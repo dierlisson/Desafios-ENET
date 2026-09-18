@@ -5,8 +5,10 @@ import com.example.financetracker.data.local.ExpenseEntity
 import com.example.financetracker.data.remote.AwesomeExchangeApi
 import com.example.financetracker.domain.model.CurrencyRates
 import com.example.financetracker.domain.model.Expense
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 interface ExpenseRepository {
     fun getAllExpenses(): Flow<List<Expense>>
@@ -27,16 +29,18 @@ class ExpenseRepositoryImpl(
         }
     }
 
-    override suspend fun insertExpense(expense: Expense): Long {
-        return expenseDao.insertExpense(ExpenseEntity.fromDomain(expense))
+    override suspend fun insertExpense(expense: Expense): Long = withContext(Dispatchers.IO) {
+        expenseDao.insertExpense(ExpenseEntity.fromDomain(expense))
     }
 
-    override suspend fun updateExpense(expense: Expense) {
+    override suspend fun updateExpense(expense: Expense): Unit = withContext(Dispatchers.IO) {
         expenseDao.updateExpense(ExpenseEntity.fromDomain(expense))
+        Unit
     }
 
-    override suspend fun deleteExpense(expense: Expense) {
+    override suspend fun deleteExpense(expense: Expense): Unit = withContext(Dispatchers.IO) {
         expenseDao.deleteExpense(ExpenseEntity.fromDomain(expense))
+        Unit
     }
 
     override suspend fun fetchCurrencyRates(): Result<CurrencyRates> {

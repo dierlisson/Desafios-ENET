@@ -2,7 +2,9 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.ksp)
 }
+
 
 android {
     namespace = "com.example.financetracker"
@@ -64,7 +66,8 @@ dependencies {
   // Room Database
   implementation(libs.androidx.room.runtime)
   implementation(libs.androidx.room.ktx)
-  annotationProcessor(libs.androidx.room.compiler)
+  ksp(libs.androidx.room.compiler)
+
 
   // Networking (Retrofit & Gson)
   implementation(libs.retrofit)

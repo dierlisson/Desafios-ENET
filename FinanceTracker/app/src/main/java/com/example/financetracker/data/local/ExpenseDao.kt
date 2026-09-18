@@ -18,14 +18,14 @@ interface ExpenseDao {
     fun getExpensesByMonth(startMillis: Long, endMillis: Long): Flow<List<ExpenseEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertExpense(expense: ExpenseEntity): Long
+    fun insertExpense(expense: ExpenseEntity): Long
 
     @Update
-    suspend fun updateExpense(expense: ExpenseEntity)
+    fun updateExpense(expense: ExpenseEntity): Int
 
     @Delete
-    suspend fun deleteExpense(expense: ExpenseEntity)
+    fun deleteExpense(expense: ExpenseEntity): Int
 
     @Query("DELETE FROM expenses WHERE id = :id")
-    suspend fun deleteExpenseById(id: Long)
+    fun deleteExpenseById(id: Long): Int
 }

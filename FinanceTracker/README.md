@@ -42,9 +42,3 @@ No diretório deste aplicativo (`FinanceTracker`), execute:
 ```bash
 ./gradlew testDebugUnitTest
 ```
-
----
-
-## 🎨 Design System & Prompt Stitch.io
-
-As diretrizes visuais e o prompt mestre para geração de UI no **Stitch.io** estão configurados para exportação rápida.

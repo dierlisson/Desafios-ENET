@@ -1,36 +1,24 @@
-# Desafios Android 📱
+# Desafios Android (ENET) 📱
 
-Repositório contendo soluções e desafios de desenvolvimento de aplicativos Android desenvolvidos com **Kotlin**, **Jetpack Compose**, **Arquitetura MVVM**, **Room Database**, consumo de APIs REST e **Testes Unitários**.
-
-> 📌 **Organização do Repositório:** Cada pasta neste repositório contém o código-fonte de um aplicativo específico e possui o nome oficial do projeto.
+Repositório dedicado ao armazenamento das soluções dos desafios de desenvolvimento de aplicativos Android.
 
 ---
 
-## 📁 Aplicativos Desenvolvidos
+## 📁 Estrutura de Pastas e Projetos
 
-### 1. 💰 [`FinanceTracker`](./FinanceTracker)
-- **Nome do App:** App de Monitoramento de Gastos Pessoais
-- **Tecnologias:** 
-  - **Linguagem & UI:** Kotlin, Jetpack Compose (Material 3)
-  - **Arquitetura:** MVVM (Model-View-ViewModel) com `LiveData` e `StateFlow`
-  - **Banco de Dados Local:** Room Database (`ExpenseEntity`, `ExpenseDao`)
-  - **Consumo de API:** Retrofit + Gson (AwesomeAPI - Cotação de Câmbio de Moedas em tempo real para BRL, USD, EUR, GBP)
-  - **Testes Unitários:** JUnit4, MockK, Coroutines Test, InstantTaskExecutorRule (`ExpenseViewModelTest.kt`)
-  - **Design System & Telemetria:** Tema Dark Mode Glassmorphism com acentos Neon, gráfico Donut Chart em Canvas, gráficos Spline preditivos, histórico com busca/filtros multi-tag e comprovante analítico com hash fiscal.
-- **Prompt para Stitch.io:** Artefato de design gerado com especificações completas de componentes e temas.
+> 📌 **Organização:** Cada pasta dentro deste repositório possui o **nome do aplicativo** correspondente ao desafio desenvolvido.
+
+| Pasta / Projeto | Aplicativo | Tecnologias Principais |
+| :--- | :--- | :--- |
+| 💰 [`/FinanceTracker`](./FinanceTracker) | App de Monitoramento de Gastos Pessoais | Jetpack Compose, MVVM, Room, Retrofit (AwesomeAPI), LiveData/StateFlow, Unit Tests |
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Executar os Projetos
 
-1. Clone este repositório:
+1. Clone o repositório:
    ```bash
    git clone https://github.com/dierlisson/Desafios-ENET.git
    ```
-2. Abra o diretório do aplicativo desejado no **Android Studio**:
-   - Exemplo: Navegue até a pasta `FinanceTracker`.
-3. Para compilar e rodar os testes unitários da ViewModel via linha de comando:
-   ```bash
-   cd FinanceTracker
-   ./gradlew testDebugUnitTest
-   ```
+2. Abra a pasta do projeto desejado no **Android Studio** (ex: `FinanceTracker`).
+3. Consulte o arquivo `README.md` **interno** de cada pasta de aplicativo para instruções detalhadas de arquitetura, testes e execução.

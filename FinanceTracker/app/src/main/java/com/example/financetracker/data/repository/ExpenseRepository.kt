@@ -43,8 +43,8 @@ class ExpenseRepositoryImpl(
         Unit
     }
 
-    override suspend fun fetchCurrencyRates(): Result<CurrencyRates> {
-        return try {
+    override suspend fun fetchCurrencyRates(): Result<CurrencyRates> = withContext(Dispatchers.IO) {
+        try {
             val response = exchangeApi.getExchangeRates()
             val usdBrl = response["USDBRL"]?.bid?.toDoubleOrNull() ?: 5.50
             val eurBrl = response["EURBRL"]?.bid?.toDoubleOrNull() ?: 6.00

@@ -1,4 +1,4 @@
-# Desafios Android (ENET) 📱
+# Desafios Android (ESCOLA NOVA ERA TECH) 📱
 
 Repositório dedicado ao armazenamento das soluções dos desafios de desenvolvimento de aplicativos Android.
 
@@ -22,3 +22,13 @@ Repositório dedicado ao armazenamento das soluções dos desafios de desenvolvi
    ```
 2. Abra a pasta do projeto desejado no **Android Studio** (ex: `FinanceTracker`).
 3. Consulte o arquivo `README.md` **interno** de cada pasta de aplicativo para instruções detalhadas de arquitetura, testes e execução.
+
+## 👨‍💻 Autor
+
+**Dierlisson Justiniano**
+
+GitHub: [@dierlisson](https://github.com/dierlisson)
+
+---
+
+Este repositório será atualizado conforme novos desafios forem realizados.

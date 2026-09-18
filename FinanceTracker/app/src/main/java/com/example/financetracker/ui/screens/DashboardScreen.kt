@@ -40,8 +40,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -264,6 +266,16 @@ private fun MainDashboardContent(
     onExpenseClick: (Expense) -> Unit,
     onDeleteExpense: (Expense) -> Unit
 ) {
+    val listState = rememberLazyListState()
+
+    val isScrolled by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0 || listState.firstVisibleItemScrollOffset > 30
+        }
+    }
+    var manualToggleCollapsed by remember { mutableStateOf<Boolean?>(null) }
+    val isRatesCardCollapsed = manualToggleCollapsed ?: isScrolled
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -277,16 +289,18 @@ private fun MainDashboardContent(
             onCurrencySelected = onCurrencySelected
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
-        // Câmbio ao Vivo Card
+        // Câmbio ao Vivo Card (Colapsa ao rolar a tela)
         ExchangeRatesCard(
             rates = currencyRates,
             isLoading = isLoading,
-            onRefreshClick = onRefreshRates
+            onRefreshClick = onRefreshRates,
+            isCollapsed = isRatesCardCollapsed,
+            onToggleCollapse = { manualToggleCollapsed = !isRatesCardCollapsed }
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         val filteredExpenses = expenses.filter { exp ->
             val matchesSearch = exp.title.contains(searchQuery, ignoreCase = true)
@@ -295,6 +309,7 @@ private fun MainDashboardContent(
         }
 
         LazyColumn(
+            state = listState,
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 80.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
